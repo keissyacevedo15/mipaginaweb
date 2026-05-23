@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portafolio Personal</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursor-follower"></div>
+
+  <div class="bg-grid"></div>
+  <div class="noise-overlay"></div>
+
+  <nav class="nav">
+    <div class="nav-logo">
+      <span class="logo-bracket">[</span>
+      <span class="logo-name">MI PORTAFOLIO</span>
+      <span class="logo-bracket">]</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#sobre-mi">sobre mí</a></li>
+      <li><a href="#habilidades">habilidades</a></li>
+      <li><a href="#proyectos">proyectos</a></li>
+      <li><a href="#contacto">contacto</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" id="inicio">
+    <div class="hero-tag">// disponible para proyectos</div>
+    <h1 class="hero-title">
+      <span class="line line-1">Hola, soy</span>
+      <span class="line line-2 italic">Keissy Acevedo</span>
+    </h1>
+    <p class="hero-sub">Desarrolladora Web &amp; Diseñadora de Interfaces</p>
+    <div class="hero-cta">
+      <a href="#proyectos" class="btn-primary">Ver proyectos</a>
+      <a href="#contacto" class="btn-ghost">Contáctame →</a>
+    </div>
+    <div class="hero-scroll">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <section class="section sobre-mi" id="sobre-mi">
+    <div class="section-label">01 — sobre mí</div>
+    <div class="sobre-grid">
+      <div class="sobre-img-wrap">
+        <div class="sobre-img-placeholder">
+          <span class="img-initials">KA</span>
+          <div class="img-border"></div>
+        </div>
+        <div class="sobre-stats">
+          <div class="stat">
+            <span class="stat-num">3+</span>
+            <span class="stat-label">años de experiencia</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num"></span>
+            <span class="stat-label">proyectos completados</span>
+          </div>
+        </div>
+      </div>
+      <div class="sobre-text">
+        <h2 class="section-title">Un poco sobre mí</h2>
+        <p>Soy una estudiante de Ingenieria en Sistemas Computacionales, interesada en IA, desarrollo WEB, Proyectos, etc.</p>
+        <div class="sobre-links">
+          <a href="#" class="link-inline">Descargar CV →</a>
+          <a href="#" class="link-inline">GitHub →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section proyectos" id="proyectos">
+    <div class="section-label">03 — proyectos</div>
+    <h2 class="section-title">Trabajos destacados</h2>
+    <div class="projects-grid">
+      <article class="project-card featured">
+        <div class="project-num">01</div>
+        <div class="project-tag">Primer Proyecto</div>
+        <h3>KAILA</h3>
+        <p>Pagina de Servicios de Emergencia.</p>
+      
+      </article>
+
+      <article class="project-card">
+        <div class="project-num">02</div>
+        <div class="project-tag">Segundo Proyecto</div>
+        <h3>Puro Pata</h3>
+        <p>Spray Natural anti pulgas</p>
+
+      </article>
+
+      <article class="project-card">
+        <div class="project-num">03</div>
+        <div class="project-tag">Tercer Proyecto</div>
+        <h3>AsistenciaTrack</h3>
+        <p>Pagina WEB para el control de asistencia.</p>
+
+      </article>
+    </div>
+  </section>
+
+  <section class="section contacto" id="contacto">
+    <div class="section-label">04 — contacto</div>
+    <div class="contact-inner">
+      <h2 class="section-title contact-title">¿Trabajamos juntos?</h2>
+      <p class="contact-desc">Estoy disponible para proyectos, colaboraciones y oportunidades de trabajo. ¡Escríbeme!</p>
+      <a href="mailto:keissyacevedo15@gmail.com" class="contact-email">keissyacevedo15@gmail.com</a>
+      <div class="contact-social">
+        <a href="#" class="social-link">GitHub</a>
+        <a href="#" class="social-link">Twitter/X</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span>Keissy Acevedo</span>
+    <span class="footer-sep">—</span>
+    <span>Hecho con HTML, CSS &amp; ☕</span>
+  </footer>
+
+  <script>
+    
+    const cursor = document.getElementById('cursor');
+    const follower = document.getElementById('cursor-follower');
+    let mx = 0, my = 0, fx = 0, fy = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.transform = `translate(${mx}px, ${my}px)`;
+    });
+
+    function animateFollower() {
+      fx += (mx - fx) * 0.12;
+      fy += (my - fy) * 0.12;
+      follower.style.transform = `translate(${fx}px, ${fy}px)`;
+      requestAnimationFrame(animateFollower);
+    }
+    animateFollower();
+
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.classList.add('hover');
+        follower.classList.add('hover');
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.classList.remove('hover');
+        follower.classList.remove('hover');
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.skill-card, .project-card, .sobre-grid, .contact-inner').forEach(el => {
+      observer.observe(el);
+    });
+
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.nav');
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+  </script>
+</body>
+</html>
